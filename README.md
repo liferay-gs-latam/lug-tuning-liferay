@@ -8,13 +8,11 @@ Liferay DXP 7.4 running on docker compose.
 
 ## Database DUMP
 
-Download the Database backup from: link_to_backup
-
-Move the to the ```/database-dump``` folder.
+The database dump is in the ```/database-dump``` folder.
 
 ## Document Library
 
-Move DL to the ```liferay-document-library/``` folder.
+Liferay Document Library is mapped to ```liferay-document-library/``` folder.
 
 ## Start the environment
 
@@ -30,6 +28,20 @@ docker compose logs -f liferay
 
 ## Access
 
-Access http://localhost:8080/ and login with [USER] and [PASSWORD]
+Access http://localhost:8080/ and login with test@liferay,com
 
+# Load Tests
 
+## Grafana
+
+Access http://localhost:3000/ and login with following credentials: admin/admin
+
+Import some dashboard from https://grafana.com/grafana/dashboards/?search=k6&dataSource=influxdb
+
+## Execute the tests
+
+To run k6, execute:
+
+```
+docker compose run --rm -T k6 run /scripts/liferay-02.js --tag testid=my-test-01
+```
