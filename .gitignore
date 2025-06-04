@@ -1,8 +1,8 @@
-/database-dump/*
-!/database-dump/.keep
+# /database-dump/*
+# !/database-dump/.keep
 
-liferay-document-library/*
-!liferay-document-library/.keep
+# liferay-document-library/*
+# !liferay-document-library/.keep
 
 elasticsearch-data/*
 !elasticsearch-data/.keep
