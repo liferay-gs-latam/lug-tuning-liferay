@@ -10,3 +10,9 @@ datasources:
       password: admin123
     jsonData:
       dbName: mydb
+  
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: false
