@@ -38,7 +38,15 @@ Access http://localhost:3000/ and login with following credentials: admin/admin
 
 Import some dashboard from https://grafana.com/grafana/dashboards/?search=k6&dataSource=influxdb
 
-## Execute the tests
+## Prometheus
+
+Access http://localhost:9090
+
+## InfluxDB
+
+Access http://localhost:8086
+
+## Execute the k6 tests
 
 To run k6, execute:
 
