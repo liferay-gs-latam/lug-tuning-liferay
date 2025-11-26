@@ -12,7 +12,7 @@ services:
       - "3306:3306"
 
   liferay:
-    image: liferay/dxp:2025.q1.10-lts
+    image: liferay/dxp:2025.q4.0
     environment:
       - LIFERAY_JVM_OPTS=-Xms3g -Xmx6g -javaagent:/opt/liferay/jmx_exporter/jmx_prometheus_javaagent-1.3.0.jar=8081:/opt/liferay/jmx_exporter/config.yaml
       - LIFERAY_JPDA_ENABLED=true
@@ -24,7 +24,7 @@ services:
       - LIFERAY_RETRY_PERIOD_JDBC_PERIOD_ON_PERIOD_STARTUP_PERIOD_DELAY=20
       - LIFERAY_RETRY_PERIOD_JDBC_PERIOD_ON_PERIOD_STARTUP_PERIOD_MAX_PERIOD_RETRIES=10
       - LIFERAY_UPGRADE_PERIOD_DATABASE_PERIOD_AUTO_PERIOD_RUN=true
-      - GLOWROOT_ENABLED=true
+      - GLOWROOT_ENABLED=false
     ports:
       - "8080:8080"
       - "11311:11311"

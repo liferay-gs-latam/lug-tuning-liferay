@@ -28,7 +28,7 @@ docker compose logs -f liferay
 
 ## Access
 
-Access http://localhost:8080/ and login with test@liferay,com
+Access http://localhost:8080/ and login with test@liferay.com
 
 # Load Tests
 
