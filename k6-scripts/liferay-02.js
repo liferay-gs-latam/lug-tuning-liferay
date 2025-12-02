@@ -62,48 +62,33 @@ export function scenario_1() {
 
     sleep(0.5)
 
-    vars['_com_liferay_login_web_portlet_LoginPortlet_formDate1'] = response
+    vars['login_portlet_formDate_value'] = response
       .html()
       .find('input[name=_com_liferay_login_web_portlet_LoginPortlet_formDate]')
       .first()
       .attr('value')
 
-    vars['_com_liferay_login_web_portlet_LoginPortlet_doActionAfterLogin1'] = response
-      .html()
-      .find('input[name=_com_liferay_login_web_portlet_LoginPortlet_doActionAfterLogin]')
-      .first()
-      .attr('value')
+    // console.log(`formDate retrieved: ${vars['login_portlet_formDate_value']}`);
 
-    vars['_com_liferay_login_web_portlet_LoginPortlet_redirect1'] = response
-      .html()
-      .find('input[name=_com_liferay_login_web_portlet_LoginPortlet_redirect]')
-      .first()
-      .attr('value')
-
-    vars['_com_liferay_login_web_portlet_LoginPortlet_checkboxNames1'] = response
-      .html()
-      .find('input[name=_com_liferay_login_web_portlet_LoginPortlet_checkboxNames]')
-      .first()
-      .attr('value')
-
-    // Extrai o valor de p_auth do atributo action do formulário
-    const formAction = response.html().find('form#_com_liferay_login_web_portlet_LoginPortlet_loginForm').first().attr('action');
-    const pAuthMatch = formAction.match(/p_auth=([^&]+)/);
+    const backLinkHref = response.html().find('a[href*="p_auth="]').first().attr('href');
+    const pAuthMatch = backLinkHref ? backLinkHref.match(/p_auth=([^&]+)/) : null;
     vars['p_auth_token'] = pAuthMatch ? pAuthMatch[1] : '';
+    // console.log(`p_auth recuperado: ${vars['p_auth_token']}`);
+
   })
 
   group('Login Post and load home',
     function () {
       response = http.post(
-        'http://liferay:8080/home?p_p_id=com_liferay_login_web_portlet_LoginPortlet&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&_com_liferay_login_web_portlet_LoginPortlet_javax.portlet.action=%2Flogin%2Flogin&_com_liferay_login_web_portlet_LoginPortlet_mvcRenderCommandName=%2Flogin%2Flogin',
+        'http://liferay:8080/home?p_p_id=com_liferay_login_web_portlet_LoginPortlet&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&_com_liferay_login_web_portlet_LoginPortlet_jakarta.portlet.action=%2Flogin%2Flogin&_com_liferay_login_web_portlet_LoginPortlet_mvcRenderCommandName=%2Flogin%2Flogin',
         {
-          _com_liferay_login_web_portlet_LoginPortlet_formDate: `${vars['_com_liferay_login_web_portlet_LoginPortlet_formDate1']}`,
-          _com_liferay_login_web_portlet_LoginPortlet_saveLastPath: `${vars['_com_liferay_login_web_portlet_LoginPortlet_doActionAfterLogin1']}`,
-          _com_liferay_login_web_portlet_LoginPortlet_redirect: `${vars['_com_liferay_login_web_portlet_LoginPortlet_redirect1']}`,
-          _com_liferay_login_web_portlet_LoginPortlet_doActionAfterLogin: `${vars['_com_liferay_login_web_portlet_LoginPortlet_doActionAfterLogin1']}`,
+          _com_liferay_login_web_portlet_LoginPortlet_formDate: `${vars['login_portlet_formDate_value']}`,
+          _com_liferay_login_web_portlet_LoginPortlet_saveLastPath: 'false',
+          _com_liferay_login_web_portlet_LoginPortlet_redirect: '',
+          _com_liferay_login_web_portlet_LoginPortlet_doActionAfterLogin: 'false',
           _com_liferay_login_web_portlet_LoginPortlet_login: user.emailAddress,
           _com_liferay_login_web_portlet_LoginPortlet_password: user.password,
-          _com_liferay_login_web_portlet_LoginPortlet_checkboxNames: `${vars['_com_liferay_login_web_portlet_LoginPortlet_checkboxNames1']}`,
+          _com_liferay_login_web_portlet_LoginPortlet_checkboxNames: 'rememberMe',
           p_auth: vars['p_auth_token'],
         },
         {
@@ -128,6 +113,8 @@ export function scenario_1() {
       if (!response.status === 200) {
         console.warn(`Request failed with status ${response.status}`);
       }
+
+      // console.log(`response status: ${response.status}`);
 
       sleep(1)
     }
