@@ -6,6 +6,10 @@ Liferay DXP 7.4 running on docker compose.
 
 * Docker and Docker Compose (CE edition)
 
+## Architecture
+
+![Architecture](architecture.png)
+
 ## Database DUMP
 
 The database dump is in the ```/database-dump``` folder.
