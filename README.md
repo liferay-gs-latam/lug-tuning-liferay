@@ -50,7 +50,23 @@ Access http://localhost:9090
 
 ## InfluxDB
 
-Access http://localhost:8086
+Check if is running executing:
+
+```
+curl -sl -I http://localhost:8086/ping
+```
+
+The response should be something like:
+
+```
+HTTP/1.1 204 No Content
+Content-Type: application/json
+Request-Id: daf56f37-0782-11f1-8166-662020df422a
+X-Influxdb-Build: OSS
+X-Influxdb-Version: v1.11.8
+X-Request-Id: daf56f37-0782-11f1-8166-662020df422a
+Date: Wed, 11 Feb 2026 19:50:02 GMT
+```
 
 ## Execute the k6 tests
 
