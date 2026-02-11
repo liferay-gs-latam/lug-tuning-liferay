@@ -42,7 +42,7 @@ Access http://localhost:3000/ and login with following credentials: admin/admin
 
 Import some dashboard from https://grafana.com/grafana/dashboards/?search=k6&dataSource=influxdb
 
-Or you can use the two dashboards from this repo in the folder [grafana-dashboard](grafana-dashboard).
+Or you can use the two dashboards from this repo in the folder [grafana-dashboards](grafana-dashboards).
 
 ## Prometheus
 
