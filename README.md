@@ -42,6 +42,8 @@ Access http://localhost:3000/ and login with following credentials: admin/admin
 
 Import some dashboard from https://grafana.com/grafana/dashboards/?search=k6&dataSource=influxdb
 
+Or you can use the two dashboards from this repo in the folder [grafana-dashboard](/grafana-dashboard).
+
 ## Prometheus
 
 Access http://localhost:9090
@@ -52,8 +54,16 @@ Access http://localhost:8086
 
 ## Execute the k6 tests
 
-To run k6, execute:
+To run k6, execute the container using the script that contains the scenario that you would like to test:
+
+For full authentication flow scenario:
 
 ```
-docker compose run --rm -T k6 run /scripts/liferay-02.js --tag testid=my-test-01
+docker compose run --rm -T k6 run /scripts/01-autentication-flow.js --tag testid=my-test-01
+```
+
+For simple load page scenario:
+
+```
+docker compose run --rm -T k6 run /scripts/02-simple-load-content-page.js --tag testid=my-test-02
 ```
