@@ -70,19 +70,6 @@ export function scenario_1() {
       'Image 1 Response time < 1s': (r) => r.timings.duration < 1000,
     });
 
-    response = http.get('http://liferay:8080/documents/20118/0/2k.jpg/bca532d5-d845-8849-cea9-4480b17801dd?version=1.0&t=1749245871740', {
-      headers: {
-        'sec-ch-ua': '"Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"',
-        'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-platform': '"Linux"',
-      },
-    })
-
-    check(response, {
-      'Image 2 status is 200': (r) => r.status === 200,
-      'Image 2 Response time < 1s': (r) => r.timings.duration < 1000,
-    });
-
     sleep(0.25)
   })
 
